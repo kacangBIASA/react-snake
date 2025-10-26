@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  react-snake:
+    build: .
+    container_name: react-snake
+    ports:
+      - "8081:8081"
+    volumes:
+      - .:/app
+    environment:
+      - EXPO_DEVTOOLS_LISTEN_ADDRESS=0.0.0.0
+    stdin_open: true
+    tty: true
