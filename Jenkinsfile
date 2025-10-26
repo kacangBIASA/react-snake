@@ -44,7 +44,7 @@ pipeline {
 
         stage('Test Container') {
             steps {
-                bat 'docker run -d --name react-snake-test -p 8082:8081 %DOCKER_IMAGE%'
+                bat 'docker run -d --name react-snake-test -p 8083:8081 %DOCKER_IMAGE%'
                 bat 'timeout /t 10'
                 bat 'docker ps'
                 bat 'docker stop react-snake-test'
