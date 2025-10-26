@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "ridhoaja/react-snake:latest"
-        DOCKER_CREDENTIALS = "docker-hub-creds"
+        DOCKER_CREDENTIALS = "dockerhub-credentials"
     }
 
     stages {
