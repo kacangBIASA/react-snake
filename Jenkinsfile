@@ -45,17 +45,13 @@ pipeline {
         stage('Test Container') {
             steps {
                             script {
-                // Hentikan container lama jika ada
                 bat 'docker rm -f react-snake-test || echo "No previous container"'
 
-                // Jalankan container baru
                 bat 'docker run -d --name react-snake-test -p 8090:8081 ridhoaja/react-snake:latest'
 
-                // Tunggu container siap (gunakan ping cross-platform)
                 echo "Waiting for container to start..."
                 bat 'powershell -Command "Start-Sleep -Seconds 10"'
 
-                // Cek apakah container jalan
                 bat 'docker ps -a'
                 }
             }
