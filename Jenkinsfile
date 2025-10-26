@@ -44,11 +44,20 @@ pipeline {
 
         stage('Test Container') {
             steps {
-                bat 'docker run -d --name react-snake-test -p 8090:8081 %DOCKER_IMAGE%'
-                bat 'timeout /t 10'
-                bat 'docker ps'
-                bat 'docker stop react-snake-test'
-                bat 'docker rm react-snake-test'
+                            script {
+                // Hentikan container lama jika ada
+                bat 'docker rm -f react-snake-test || echo "No previous container"'
+
+                // Jalankan container baru
+                bat 'docker run -d --name react-snake-test -p 8090:8081 ridhoaja/react-snake:latest'
+
+                // Tunggu container siap (gunakan ping cross-platform)
+                echo "Waiting for container to start..."
+                bat 'powershell -Command "Start-Sleep -Seconds 10"'
+
+                // Cek apakah container jalan
+                bat 'docker ps -a'
+                }
             }
         }
     }
